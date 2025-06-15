@@ -1,0 +1,1 @@
+// Funciones de utilidad como generación de referencia

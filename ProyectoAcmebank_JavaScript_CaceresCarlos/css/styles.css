@@ -1,0 +1,178 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== GENERAL ===== */
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Degradado */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+  background-color: #ffffff;
+  padding: 40px;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.01);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== ENCABEZADOS ===== */
+h1, h2 {
+  color: #003366;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-top: 40px;
+}
+
+/* ===== FORMULARIOS ===== */
+label {
+  display: block;
+  margin: 15px 0 5px;
+  color: #333;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #2575fc;
+  outline: none;
+}
+
+button {
+  background-color: #2575fc;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #003366;
+}
+
+/* ===== EXTRACTO BANCARIO ===== */
+#resultadoExtracto table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#resultadoExtracto th,
+#resultadoExtracto td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+/* ===== CERTIFICADO ===== */
+#certificadoBancario {
+  background-color: #f9f9f9;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ===== ENLACES Y NAVEGACIÓN ===== */
+.container a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.container p.links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.container p.links a {
+  margin: 0 10px;
+}
+
+/* ===== BRANDING DE LOGIN Y REGISTRO ===== */
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.branding-box {
+  color: white;
+  text-align: center;
+  max-width: 300px;
+}
+
+.branding-box .icon {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  padding: 40px;
+  min-height: 100vh;
+  flex-wrap: wrap;
+}
+
+.branding-box {
+  color: white;
+  text-align: center;
+  max-width: 300px;
+}
+
+.branding-box .icon {
+  width: 60px;
+  margin-bottom: 10px;
+}

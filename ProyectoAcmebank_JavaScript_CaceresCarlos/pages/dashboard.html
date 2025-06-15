@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Acme Bank</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenido, <span id="nombreUsuario"></span></h1>
+
+    <div id="resumenCuenta"></div>
+
+    <hr>
+    <h2>Consignar Dinero</h2>
+    <form id="formConsignacion">
+      <label>Monto a consignar:</label>
+      <input type="number" id="montoConsignar" required>
+      <button type="submit">Realizar consignación</button>
+    </form>
+
+    <hr>
+    <h2>Retirar Dinero</h2>
+    <form id="formRetiro">
+      <label>Monto a retirar:</label>
+      <input type="number" id="montoRetirar" required>
+      <button type="submit">Realizar retiro</button>
+    </form>
+
+    <hr>
+    <h2>Pagar Servicios Públicos</h2>
+    <form id="formPagoServicios">
+      <label>Servicio:</label>
+      <select id="servicio" required>
+        <option value="">Seleccione</option>
+        <option value="Energía">Energía</option>
+        <option value="Agua">Agua</option>
+        <option value="Gas natural">Gas natural</option>
+        <option value="Internet">Internet</option>
+      </select>
+
+      <label>Referencia:</label>
+      <input type="text" id="referenciaServicio" required>
+
+      <label>Valor a pagar:</label>
+      <input type="number" id="valorServicio" required>
+
+      <button type="submit">Realizar pago</button>
+    </form>
+
+    <hr>
+    <h2>Extracto Bancario</h2>
+    <form id="formExtracto">
+      <label for="añoExtracto">Año:</label>
+      <input type="number" id="añoExtracto" placeholder="Ej: 2025" required>
+
+      <label for="mesExtracto">Mes:</label>
+      <select id="mesExtracto" required>
+        <option value="">Seleccione</option>
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+      </select>
+
+      <button type="submit">Generar extracto</button>
+    </form>
+
+    <div id="resultadoExtracto"></div>
+    <button id="btnImprimirExtracto" style="display:none;" onclick="window.print()">Imprimir extracto</button>
+
+    <hr>
+    <h2>Certificado Bancario</h2>
+    <div id="certificadoBancario" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 10px;"></div>
+    <button onclick="window.print()">Imprimir certificado</button>
+
+    <hr>
+    <button onclick="cerrarSesion()">Cerrar sesión</button>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
+

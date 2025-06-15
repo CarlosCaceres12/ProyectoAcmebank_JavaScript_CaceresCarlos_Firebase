@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recuperar Contraseña - Acme Bank</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Recuperar Contraseña</h1>
+    <form id="recuperarForm">
+      <label>Tipo de Identificación:</label>
+      <select id="recTipoId" required>
+        <option value="">Seleccione</option>
+        <option value="CC">Cédula</option>
+        <option value="TI">Tarjeta de Identidad</option>
+      </select>
+
+      <label>Número de Identificación:</label>
+      <input type="text" id="recNumeroId" required>
+
+      <label>Correo electrónico:</label>
+      <input type="email" id="recEmail" required>
+
+      <button type="submit">Validar</button>
+      <button type="button" onclick="window.location.href='login.html'">Cancelar</button>
+    </form>
+
+    <form id="nuevoPasswordForm" style="display: none;">
+      <label>Contraseña Nueva:</label>
+      <input type="password" id="newPassword" required>
+      <button type="submit">Actualizar</button>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script>
+    let usuarioEncontrado = null;
+
+    document.getElementById("recuperarForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const tipoId = document.getElementById("recTipoId").value;
+      const numeroId = document.getElementById("recNumeroId").value;
+      const email = document.getElementById("recEmail").value;
+
+      const snap = await db.ref("usuarios/" + numeroId).get();
+      if (snap.exists()) {
+        const data = snap.val();
+        if (data.tipoId === tipoId && data.email === email) {
+          usuarioEncontrado = numeroId;
+          document.getElementById("recuperarForm").style.display = "none";
+          document.getElementById("nuevoPasswordForm").style.display = "block";
+        } else {
+          alert("Datos incorrectos.");
+        }
+      } else {
+        alert("Usuario no encontrado.");
+      }
+    });
+
+    document.getElementById("nuevoPasswordForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById("newPassword").value;
+      if (!usuarioEncontrado) return;
+      try {
+        const ref = db.ref("usuarios/" + usuarioEncontrado + "/password");
+        await ref.set(newPassword);
+        alert("Contraseña actualizada correctamente.");
+        window.location.href = "login.html";
+      } catch (err) {
+        alert("Error al actualizar: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

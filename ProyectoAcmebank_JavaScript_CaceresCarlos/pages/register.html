@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro - Acme Bank</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Registro de Usuario</h1>
+    <form id="registerForm">
+      <label>Tipo de Identificación:</label>
+      <select id="tipoId" required>
+        <option value="">Seleccione</option>
+        <option value="CC">Cédula</option>
+        <option value="TI">Tarjeta de Identidad</option>
+      </select>
+
+      <label>Número de Identificación:</label>
+      <input type="text" id="numeroId" required>
+
+      <label>Nombres:</label>
+      <input type="text" id="nombres" required>
+
+      <label>Apellidos:</label>
+      <input type="text" id="apellidos" required>
+
+      <label>Género:</label>
+      <select id="genero" required>
+        <option value="">Seleccione</option>
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+        <option value="O">Otro</option>
+      </select>
+
+      <label>Teléfono:</label>
+      <input type="tel" id="telefono" required>
+
+      <label>Correo electrónico:</label>
+      <input type="email" id="email" required>
+
+      <label>Dirección:</label>
+      <input type="text" id="direccion" required>
+
+      <label>Ciudad:</label>
+      <input type="text" id="ciudad" required>
+
+      <label>Contraseña:</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Registrarse</button>
+      <button type="button" onclick="window.location.href='login.html'">Cancelar</button>
+    </form>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="../js/firebase-config.js"></script>
+
+  <!-- Script Registro -->
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const usuario = {
+        tipoId: document.getElementById('tipoId').value,
+        numeroId: document.getElementById('numeroId').value,
+        nombres: document.getElementById('nombres').value,
+        apellidos: document.getElementById('apellidos').value,
+        genero: document.getElementById('genero').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        direccion: document.getElementById('direccion').value,
+        ciudad: document.getElementById('ciudad').value,
+        password: document.getElementById('password').value,
+        cuenta: {
+          numero: 'AC' + Math.floor(Math.random() * 1000000000),
+          saldo: 0,
+          fechaCreacion: new Date().toISOString().split("T")[0],
+          transacciones: []
+        }
+      };
+
+      try {
+        await db.ref("usuarios/" + usuario.numeroId).set(usuario);
+        alert("Cuenta creada con éxito. Su número de cuenta es: " + usuario.cuenta.numero);
+        window.location.href = "login.html";
+      } catch (err) {
+        alert("Error al registrar: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
